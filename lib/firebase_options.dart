@@ -3,6 +3,8 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -15,7 +17,7 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
-  static FirebaseOptions get currentPlatform {
+  FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
     }
@@ -52,13 +54,34 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCRhtC0PcL8dAVaFgSkeAbixVImkQsmZbE',
-    appId: '1:461612834165:web:65c63860008f0aa56a073c',
-    messagingSenderId: '461612834165',
-    projectId: 'bispick-0213',
-    authDomain: 'bispick-0213.firebaseapp.com',
-    storageBucket: 'bispick-0213.appspot.com',
-    measurementId: 'G-3HWMF6SC9X',
-  );
+  FirebaseOptions web = (() {
+      String? apiKey = dotenv.env["API_KEY"];
+      String? appId = dotenv.env["APP_ID"];
+      String? messagingSenderId = dotenv.env["MESSAGING_SENDER_ID"];
+      String? projectId = dotenv.env["PROJECT_ID"];
+      String? authDomain = dotenv.env["AUTH_DOMAIN"];
+      String? storageBucket = dotenv.env["STORAGE_BUCKET"];
+      String? measurementId = dotenv.env["MEASUREMENT_ID"];
+
+      if (apiKey == null || appId == null || messagingSenderId == null || projectId == null || authDomain == null || storageBucket == null || measurementId == null) {
+        print(apiKey);
+        print(appId);
+        print(messagingSenderId);
+        print(projectId);
+        print(authDomain);
+        print(storageBucket);
+        print(measurementId);
+        throw Exception("Can't load api keys from .env");
+      }
+
+      return FirebaseOptions(
+        apiKey: apiKey,
+        appId: appId,
+        messagingSenderId: messagingSenderId,
+        projectId: projectId,
+        authDomain: authDomain,
+        storageBucket: storageBucket,
+        measurementId: measurementId
+      );
+    })();
 }
