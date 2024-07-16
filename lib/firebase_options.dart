@@ -54,34 +54,13 @@ class DefaultFirebaseOptions {
     }
   }
 
-  FirebaseOptions web = (() {
-      String? apiKey = dotenv.env["API_KEY"];
-      String? appId = dotenv.env["APP_ID"];
-      String? messagingSenderId = dotenv.env["MESSAGING_SENDER_ID"];
-      String? projectId = dotenv.env["PROJECT_ID"];
-      String? authDomain = dotenv.env["AUTH_DOMAIN"];
-      String? storageBucket = dotenv.env["STORAGE_BUCKET"];
-      String? measurementId = dotenv.env["MEASUREMENT_ID"];
-
-      if (apiKey == null || appId == null || messagingSenderId == null || projectId == null || authDomain == null || storageBucket == null || measurementId == null) {
-        print(apiKey);
-        print(appId);
-        print(messagingSenderId);
-        print(projectId);
-        print(authDomain);
-        print(storageBucket);
-        print(measurementId);
-        throw Exception("Can't load api keys from .env");
-      }
-
-      return FirebaseOptions(
-        apiKey: apiKey,
-        appId: appId,
-        messagingSenderId: messagingSenderId,
-        projectId: projectId,
-        authDomain: authDomain,
-        storageBucket: storageBucket,
-        measurementId: measurementId
+  FirebaseOptions web = const FirebaseOptions(
+        apiKey: "API_KEY=AIzaSyDVbF6zjiiX3dTwXMq1d2lNaGPxZNN7BHo",
+        appId: "AUTH_DOMAIN=bispick-logncoding.firebaseapp.com",
+        messagingSenderId: "PROJECT_ID=bispick-logncoding",
+        projectId: "STORAGE_BUCKET=bispick-logncoding.appspot.com",
+        authDomain: "MESSAGING_SENDER_ID=928844612095",
+        storageBucket: "APP_ID=1:928844612095:web:2657226e63472c65d0e7ca",
+        measurementId: "MEASUREMENT_ID=G-DM1P3QF73K"
       );
-    })();
 }

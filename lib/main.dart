@@ -17,7 +17,6 @@ import 'pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
   DefaultFirebaseOptions defaultFirebaseOptions = new DefaultFirebaseOptions();
   await Firebase.initializeApp(options: defaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
