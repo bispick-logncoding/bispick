@@ -55,12 +55,12 @@ class DefaultFirebaseOptions {
   }
 
   FirebaseOptions web = const FirebaseOptions(
-        apiKey: "API_KEY=AIzaSyDVbF6zjiiX3dTwXMq1d2lNaGPxZNN7BHo",
-        appId: "AUTH_DOMAIN=bispick-logncoding.firebaseapp.com",
-        messagingSenderId: "PROJECT_ID=bispick-logncoding",
-        projectId: "STORAGE_BUCKET=bispick-logncoding.appspot.com",
-        authDomain: "MESSAGING_SENDER_ID=928844612095",
-        storageBucket: "APP_ID=1:928844612095:web:2657226e63472c65d0e7ca",
-        measurementId: "MEASUREMENT_ID=G-DM1P3QF73K"
+      apiKey: "AIzaSyDVbF6zjiiX3dTwXMq1d2lNaGPxZNN7BHo",
+      authDomain: "bispick-logncoding.firebaseapp.com",
+      projectId: "bispick-logncoding",
+      storageBucket: "bispick-logncoding.appspot.com",
+      messagingSenderId: "928844612095",
+      appId: "1:928844612095:web:2657226e63472c65d0e7ca",
+      measurementId: "G-DM1P3QF73K"
       );
 }

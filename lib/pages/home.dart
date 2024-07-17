@@ -115,7 +115,6 @@ class _MainPageState extends State<MainPage> {
                           alignment: Alignment.center,
                           height: 56,
                           width: MediaQuery.of(context).size.width / 4,
-                          color: Colors.black,
                           child: Text(
                             "E-Device",
                             style: TextStyle(color: Colors.white),
