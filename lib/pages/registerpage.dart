@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 16),
-                      color: Colors.black,
+                      color: Color(0xff231f52),
                       child: TextButton(
                         onPressed: () {},
                         child: Row(
@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               color: Colors.white,
                             ),
                             Text(
-                              "verify your email",
+                              "Verify your email",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -79,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 16),
-                      color: Colors.black,
+                      color: Color(0xff231f52),
                       child: TextButton(
                         onPressed: () {},
                         child: Row(
