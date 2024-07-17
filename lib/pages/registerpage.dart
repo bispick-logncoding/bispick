@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(children: [
                     Container(
                         child: Text(
-                            "* Put in your name, email, and password and verify your email",
+                            "* Verify your email before registering",
                             style: TextStyle(
                               color: Colors.red,
                             ))),
