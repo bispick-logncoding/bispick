@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -10,9 +12,45 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController idController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
+
+  void sendSignInLinkToEmail(String email) async {
+    final actionCodeSettings = ActionCodeSettings(
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'https://www.bispick.netlify.app/',
+      // This must be true
+      handleCodeInApp: true,
+      // iOSBundleId: 'com.yourcompany.yourapp',
+      // androidPackageName: 'com.yourcompany.yourapp',
+      // androidInstallApp: true,
+      // androidMinimumVersion: '12',
+    );
+
+    try {
+      await _auth.sendSignInLinkToEmail(
+        email: email,
+        actionCodeSettings: actionCodeSettings,
+      );
+      // Save the email in local storage
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('emailForSignIn', email);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Sign-in link sent! Check your email.'),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to send sign-in link: $e'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +100,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       margin: EdgeInsets.symmetric(vertical: 16),
                       color: Colors.black,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          sendSignInLinkToEmail(emailController.text);
+                        },
                         child: Row(
                           children: [
                             Icon(
@@ -111,4 +151,10 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+  //   throw UnimplementedError();
+  // }
 }
