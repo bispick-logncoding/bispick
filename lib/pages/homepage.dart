@@ -1,3 +1,4 @@
+import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,13 +27,19 @@ class _HomepageState extends State<Homepage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-              flex: 4,
-              child: Image.asset(
-                'assets/bispick.png',
+              flex: 10,
+              child: Container(
+                margin: EdgeInsets.only(top: 100, bottom: 50),
+                child: SizedBox(
+                  width: 400,
+                  child: Image.asset(
+                      'assets/bispick.png', fit: BoxFit.cover
+                  )
+                )
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Column(
                 children: [
                   TextField(
@@ -52,41 +59,45 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 10,
               child: Column(
                 children: [
                   Container(
-                    height: 56,
-                    margin: EdgeInsets.only(bottom: 16.0),
+                    height: 50,
+                    margin: EdgeInsets.only(bottom: 14.0),
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(26),
                         ),
                         padding: EdgeInsets.symmetric(vertical: 16),
                       ),
                       onPressed: () {},
                       child: Text(
-                        "Login",
+                        "Log-in",
                         style: TextStyle(
-                            color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                            color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, 'registerView');
-                    },
-                    child: Text(
-                      "Can't access your account? Sign in.",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Poppins",
-                          decoration: TextDecoration.underline),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, 'registerView');
+                      },
+                      child: Text(
+                        "Can't access your account? Sign in.",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "Poppins",
+                            decoration: TextDecoration.underline),
+                      ),
                     ),
-                  ),
+                  )
+                  ,
                 ],
               ),
             ),
