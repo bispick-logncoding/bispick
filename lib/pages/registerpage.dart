@@ -65,10 +65,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {},
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.email_outlined,
-                              color: Colors.white,
-                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: Icon(
+                                Icons.email_outlined,
+                                color: Colors.white,
+                              )
+                            )
+                            ,
                             Text(
                               "Verify your email",
                               style: TextStyle(color: Colors.white),
