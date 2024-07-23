@@ -71,7 +71,7 @@ class _HomepageState extends State<Homepage> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                            color: Colors.white, fontFamily: "Poppins"),
+                            color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

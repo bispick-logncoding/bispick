@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(children: [
                     Container(
                         child: Text(
-                            "* Put in your name, email, and password and verify your email",
+                            "* Verify your email before registering",
                             style: TextStyle(
                               color: Colors.red,
                             ))),
@@ -60,17 +60,21 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 16),
-                      color: Colors.black,
+                      color: Color(0xff231f52),
                       child: TextButton(
                         onPressed: () {},
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.email_outlined,
-                              color: Colors.white,
-                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: Icon(
+                                Icons.email_outlined,
+                                color: Colors.white,
+                              )
+                            )
+                            ,
                             Text(
-                              "verify your email",
+                              "Verify your email",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -79,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 16),
-                      color: Colors.black,
+                      color: Color(0xff231f52),
                       child: TextButton(
                         onPressed: () {},
                         child: Row(
