@@ -1,5 +1,6 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/itemsdetail.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -36,142 +37,175 @@ class _MainPageState extends State<MainPage> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Expanded(
-              flex: 1,
-              child: Image.asset('assets/bispick.png'),
+              Expanded(
+                flex: 2,
+                child: Container(
+                    color: AppColors.primary,
+                  child: Column(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child:Image.asset(
+                              'assets/bispick-white.png',
+
+                            )
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Row(
+
+                              children: [
+                                Container(
+                                  height: 56,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  margin: EdgeInsets.symmetric(vertical: 16),
+                                  color: AppColors.primary,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('allLostItemsView');
+                                    },
+                                    child: Text(
+                                      "Lost",
+                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 56,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  margin: EdgeInsets.symmetric(vertical: 16),
+                                  color: AppColors.primary,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('cameraView');
+                                    },
+                                    child: Text(
+                                      "Found",
+                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 56,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  margin: EdgeInsets.symmetric(vertical: 16),
+                                  color: AppColors.primary,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('requestView');
+                                    },
+                                    child: Text(
+                                      "Request",
+                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                        )
+
+                      ]
+                  )
+                )
+
             ),
             Expanded(
               flex: 9,
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 56,
-                        width: MediaQuery.of(context).size.width / 3,
-                        margin: EdgeInsets.symmetric(vertical: 16),
-                        color: Colors.black,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('allLostItemsView');
-                          },
-                          child: Text(
-                            "Lost",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 56,
-                        width: MediaQuery.of(context).size.width / 3,
-                        margin: EdgeInsets.symmetric(vertical: 16),
-                        color: Colors.black,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('cameraView');
-                          },
-                          child: Text(
-                            "Found",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 56,
-                        width: MediaQuery.of(context).size.width / 3,
-                        margin: EdgeInsets.symmetric(vertical: 16),
-                        color: Colors.black,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('requestView');
-                          },
-                          child: Text(
-                            "Request",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: Text(
                       "Categories",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: "Quicksand", color: AppColors.primary),
                     ),
+                    margin: EdgeInsets.only(top: 25),
                     padding: EdgeInsets.only(left: 10, bottom: 10),
                   ),
-                  Row(
+                  Stack(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('edeviceView');
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          alignment: Alignment.center,
-                          height: 56,
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Text(
-                            "E-Device",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                      Positioned(
+                        top:0,
+                          bottom: 0,
+                          left: MediaQuery.of(context).size.width / 3,
+                          child: Container(
+                            height: 40,
+                            width: 2,
+                            color: AppColors.primary,
+                          )
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('clothingView');
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 56,
-                          width: MediaQuery.of(context).size.width / 4,
-                          color: Colors.black,
-                          child: Text(
-                            "Clothing",
-                            style: TextStyle(color: Colors.white),
+                      Row(
+                        children: [
+
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('edeviceView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width: MediaQuery.of(context).size.width / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "E-Device",
+                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('stationaryView');
-                        },
-                        child: Container(
-                            alignment: Alignment.center,
-                            height: 56,
-                            width: MediaQuery.of(context).size.width / 4,
-                            color: Colors.black,
-                            child: Text(
-                              "Stationary",
-                              style: TextStyle(color: Colors.white),
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('othersView');
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 56,
-                          width: MediaQuery.of(context).size.width / 4,
-                          color: Colors.black,
-                          child: Text(
-                            "Others",
-                            style: TextStyle(color: Colors.white),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('clothingView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width: MediaQuery.of(context).size.width / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "Clothing",
+                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('stationaryView');
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                height: 56,
+                                width: MediaQuery.of(context).size.width / 4,
+                                color: AppColors.secondary,
+                                child: Text(
+                                  "Stationary",
+                                  style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('othersView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width: MediaQuery.of(context).size.width / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "Others",
+                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                   Container(
                       width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 15),
                       child: Text(
-                        "Recently found",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        "Lost Items",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
                   StreamBuilder<QuerySnapshot>(
