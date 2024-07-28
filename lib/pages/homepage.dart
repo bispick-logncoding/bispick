@@ -1,7 +1,11 @@
+import 'package:bispick/services/LocalStorageService.dart';
 import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in_web/google_sign_in_web.dart';
+
+import '../models/User.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -13,6 +17,14 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
+  final GoogleSignInPlugin plugin = GoogleSignInPlugin();
+
+  @override
+  void initState() {
+    plugin.init(
+      clientId: "928844612095-7td9k8eub0039u9255qb3llib837sfv2.apps.googleusercontent.com"
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,33 +50,14 @@ class _HomepageState extends State<Homepage> {
                 )
               ),
             ),
-            Expanded(
-              flex: 4,
-              child: Column(
-                children: [
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(
-                            color: Colors.grey, fontFamily: "Poppins")),
-                  ),
-                  TextField(
-                      controller: pwController,
-                      decoration: InputDecoration(
-                          labelText: "Password",
-                          labelStyle: TextStyle(
-                              color: Colors.grey, fontFamily: "Poppins"))),
-                ],
-              ),
-            ),
-            Expanded(
+           Expanded(
               flex: 10,
               child: Column(
                 children: [
                   Container(
                     height: 50,
                     margin: EdgeInsets.only(bottom: 14.0),
+                    padding: EdgeInsets.symmetric(horizontal: 34),
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -74,7 +67,29 @@ class _HomepageState extends State<Homepage> {
                         ),
                         padding: EdgeInsets.symmetric(vertical: 16),
                       ),
-                      onPressed: () {},
+                      onPressed: () async {
+                        var result = await plugin.isSignedIn();
+                        print(result);
+                        if (result) {
+                          Navigator.of(context).pushNamed("homeView");
+                        }
+                        try {
+                          var googleSignInUserData = await plugin.signInSilently();
+                          User user = User(
+                            id: googleSignInUserData!.id,
+                            email: googleSignInUserData!.email,
+                            displayName: googleSignInUserData!.displayName,
+                            photoUrl: googleSignInUserData!.photoUrl,
+                            idToken: googleSignInUserData!.idToken,
+                            serverAuthCode: googleSignInUserData!
+                                .serverAuthCode,
+                          );
+                          LocalStorageService.saveUser(user);
+                          Navigator.of(context).pushNamed("homeView");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                       child: Text(
                         "Log-in",
                         style: TextStyle(
