@@ -75,6 +75,9 @@ class _HomepageState extends State<Homepage> {
                         }
                         try {
                           var googleSignInUserData = await plugin.signInSilently();
+                          if (googleSignInUserData == null) {
+                            googleSignInUserData = await plugin.signIn();
+                          }
                           User user = User(
                             id: googleSignInUserData!.id,
                             email: googleSignInUserData!.email,
