@@ -55,9 +55,9 @@ class _HomepageState extends State<Homepage> {
               child: Column(
                 children: [
                   Container(
-                    height: 50,
+                    height: 70,
                     margin: EdgeInsets.only(bottom: 14.0),
-                    padding: EdgeInsets.symmetric(horizontal: 34),
+                    padding: EdgeInsets.symmetric(horizontal: 14),
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(

@@ -44,16 +44,15 @@ class _MainPageState extends State<MainPage> {
                   child: Column(
                       children: [
                         Expanded(
-                            flex: 1,
+                            flex: 2,
                             child:Image.asset(
                               'assets/bispick-white.png',
 
                             )
                         ),
                         Expanded(
-                            flex: 1,
+                            flex: 2,
                             child: Row(
-
                               children: [
                                 Container(
                                   height: 56,
@@ -110,7 +109,7 @@ class _MainPageState extends State<MainPage> {
 
             ),
             Expanded(
-              flex: 9,
+              flex: 7,
               child: Column(
                 children: [
                   Container(

@@ -4,14 +4,12 @@ import 'package:bispick/pages/camerapage.dart';
 import 'package:bispick/pages/clothing.dart';
 import 'package:bispick/pages/edevice.dart';
 import 'package:bispick/pages/homepage.dart';
-import 'package:bispick/pages/itemsdetail.dart';
 import 'package:bispick/pages/others.dart';
 import 'package:bispick/pages/registerpage.dart';
 import 'package:bispick/pages/requestpage.dart';
 import 'package:bispick/pages/stationary.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'pages/home.dart';
 
