@@ -18,7 +18,6 @@ class _ClothingState extends State<Clothing> {
 
   @override
   void initState() {
-    // TODO: implement initState
     crud.getClothings().then((value) {
       setState(() {
         clothing = value;
@@ -87,7 +86,6 @@ class _ClothingState extends State<Clothing> {
                     final description = lostThing.get('description');
                     final box_num = lostThing.get('box_number');
                     final lostthingid = lostThing.id;
-
                     return Card(
                       margin: EdgeInsets.all(10),
                       child: GestureDetector(
@@ -106,66 +104,78 @@ class _ClothingState extends State<Clothing> {
                                         id: lostthingid,
                                       )));
                         },
-                        child: Stack(
-                          children: [
-                            Opacity(
-                              opacity: 0.5,
-                              child: Container(
-                                height:
-                                    (MediaQuery.of(context).size.height - 56) /
-                                        3,
-                                padding: const EdgeInsets.all(15),
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                    width: 1.0,
-                                  ),
-                                  image: DecorationImage(
-                                    opacity: 0.5,
-                                    image: NetworkImage(photoUrl),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height:
-                                  (MediaQuery.of(context).size.height - 56) / 3,
-                              padding: const EdgeInsets.all(15),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 3,
-                                ),
-                              ),
-                              child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      description,
-                                      style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Opacity(
+                                  opacity: 0.5,
+                                  child: Container(
+                                    height:
+                                        (MediaQuery.of(context).size.height -
+                                                56) /
+                                            3,
+                                    padding: const EdgeInsets.all(15),
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 1.0,
+                                      ),
+                                      image: DecorationImage(
+                                        opacity: 0.5,
+                                        image: NetworkImage(photoUrl),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                    Text(
-                                      box_num,
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  height: (MediaQuery.of(context).size.height -
+                                          56) /
+                                      3,
+                                  padding: const EdgeInsets.all(15),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 3,
+                                    ),
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          description,
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
+                                        Text(
+                                          box_num,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
