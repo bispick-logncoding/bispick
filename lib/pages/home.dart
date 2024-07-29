@@ -121,83 +121,87 @@ class _MainPageState extends State<MainPage> {
                     margin: EdgeInsets.only(top: 25),
                     padding: EdgeInsets.only(left: 10, bottom: 10),
                   ),
-                  Stack(
-                    children: [
-                      Positioned(
-                        top:0,
-                          bottom: 0,
-                          left: MediaQuery.of(context).size.width / 3,
+                  Container(
+                    color: AppColors.secondary,
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('edeviceView');
+                          },
                           child: Container(
-                            height: 40,
-                            width: 2,
-                            color: AppColors.primary,
-                          )
-                      ),
-                      Row(
-                        children: [
-
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('edeviceView');
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 56,
-                              width: MediaQuery.of(context).size.width / 4,
-                              color: AppColors.secondary,
-                              child: Text(
-                                "E-Device",
-                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
-                              ),
+                            alignment: Alignment.center,
+                            height: 56,
+                            width: (MediaQuery.of(context).size.width - 3) / 4,
+                            color: AppColors.secondary,
+                            child: Text(
+                              "E-Device",
+                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('clothingView');
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 56,
-                              width: MediaQuery.of(context).size.width / 4,
-                              color: AppColors.secondary,
-                              child: Text(
-                                "Clothing",
-                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
-                              ),
+                        ),
+                        Container(
+                          width: 1,  // 세로 막대의 두께
+                          color: Colors.grey,  // 세로 막대의 색상
+                          height: 36,  // 세로 막대의 높이
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('clothingView');
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 56,
+                            width: (MediaQuery.of(context).size.width - 3) / 4,
+                            color: AppColors.secondary,
+                            child: Text(
+                              "Clothing",
+                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('stationaryView');
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                height: 56,
-                                width: MediaQuery.of(context).size.width / 4,
-                                color: AppColors.secondary,
-                                child: Text(
-                                  "Stationary",
-                                  style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
-                                )),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('othersView');
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 56,
-                              width: MediaQuery.of(context).size.width / 4,
-                              color: AppColors.secondary,
-                              child: Text(
-                                "Others",
-                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
-                              ),
+                        ),
+                        Container(
+                          width: 1,  // 세로 막대의 두께
+                          color: Colors.grey,  // 세로 막대의 색상
+                          height: 36,  // 세로 막대의 높이
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('stationaryView');
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 56,
+                            width: (MediaQuery.of(context).size.width - 3) / 4,
+                            color: AppColors.secondary,
+                            child: Text(
+                              "Stationary",
+                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Container(
+                          width: 1,  // 세로 막대의 두께
+                          color: Colors.grey,  // 세로 막대의 색상
+                          height: 36,  // 세로 막대의 높이
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('othersView');
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 56,
+                            width: (MediaQuery.of(context).size.width - 3) / 4,
+                            color: AppColors.secondary,
+                            child: Text(
+                              "Others",
+                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ),
                   Container(
                       width: MediaQuery.of(context).size.width,
