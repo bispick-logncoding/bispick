@@ -13,13 +13,15 @@ class Edevice extends StatefulWidget {
 
 class _EdeviceState extends State<Edevice> {
   CRUD crud = new CRUD();
-  Stream? edevices;
+  late Stream<QuerySnapshot> edevices;
+  bool isLoading = false;
 
   @override
   void initState() {
-    // TODO: implement initState
+    isLoading = true;
     crud.getEdevices().then((value) {
       setState(() {
+        isLoading = false;
         edevices = value;
       });
     });
@@ -60,9 +62,13 @@ class _EdeviceState extends State<Edevice> {
           ),
         ],
       ),
-      body: Container(
+      body: isLoading
+          ? Center(
+        child: CircularProgressIndicator(color: Colors.black),
+      )
+          : Container(
         child: StreamBuilder<QuerySnapshot>(
-          stream: edevices as Stream<QuerySnapshot>,
+          stream: edevices,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -94,7 +100,8 @@ class _EdeviceState extends State<Edevice> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LostThingDetailView(
+                                  builder: (context) =>
+                                      LostThingDetailView(
                                         username: snapshot.data!.docs[index]
                                             .get('username'),
                                         box_number: box_num,
@@ -110,9 +117,9 @@ class _EdeviceState extends State<Edevice> {
                             Opacity(
                               opacity: 0.5,
                               child: Container(
-                                height:
-                                    (MediaQuery.of(context).size.height - 56) /
-                                        3,
+                                height: (MediaQuery.of(context).size.height -
+                                    56) /
+                                    3,
                                 padding: const EdgeInsets.all(15),
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
@@ -130,8 +137,9 @@ class _EdeviceState extends State<Edevice> {
                               ),
                             ),
                             Container(
-                              height:
-                                  (MediaQuery.of(context).size.height - 56) / 3,
+                              height: (MediaQuery.of(context).size.height -
+                                  56) /
+                                  3,
                               padding: const EdgeInsets.all(15),
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
@@ -144,7 +152,8 @@ class _EdeviceState extends State<Edevice> {
                               child: Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       description,
