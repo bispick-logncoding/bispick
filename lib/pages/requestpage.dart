@@ -1,4 +1,5 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
+import 'package:bispick/services/LocalStorageService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,6 @@ class _RequestPageState extends State<RequestPage> {
         requeststream = value;
       });
     });
-
     super.initState();
   }
 
@@ -104,6 +104,7 @@ class _RequestPageState extends State<RequestPage> {
                                   title: Text(title.toString()),
                                   subtitle: Text(description.toString()),
                                 ),
+                                (LocalStorageService.loadUser()?.email == "bispick.maintainer@gmail.com") ?
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -114,7 +115,7 @@ class _RequestPageState extends State<RequestPage> {
                                       },
                                     )
                                   ],
-                                )
+                                ) : Container(),
                               ],
                             ),
                           ),

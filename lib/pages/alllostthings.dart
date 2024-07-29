@@ -13,13 +13,12 @@ class AllLostThings extends StatefulWidget {
 
 class _AllLostThingsState extends State<AllLostThings> {
   CRUD crud = new CRUD();
-  Stream? lostthingstream;
+  late Stream<QuerySnapshot> lostthingstream;
   bool isLoading = false;
 
   @override
   void initState() {
     isLoading = true;
-    // TODO: implement initState
     crud.getallLostthings().then((value) {
       setState(() {
         isLoading = false;
@@ -62,107 +61,108 @@ class _AllLostThingsState extends State<AllLostThings> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Container(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: lostthingstream as Stream<QuerySnapshot>,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(color: Colors.black),
-              );
-            } else if (snapshot.hasError) {
-              print(snapshot.connectionState);
-              return Center(
-                child: Text("ERROR HAS HAPPENED"),
-              );
-            } else if (snapshot.hasData) {
-              return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    final lostThing = snapshot.data!.docs[index];
-                    final photoURL = lostThing.get('photourl');
-                    final description = lostThing.get("description");
-                    final box_num = lostThing.get("box_number");
-                    final lostthingid = lostThing.id;
+      body: isLoading
+          ? Center(
+        child: CircularProgressIndicator(color: Colors.black),
+      )
+          : StreamBuilder<QuerySnapshot>(
+        stream: lostthingstream,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(color: Colors.black),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("ERROR HAS HAPPENED"),
+            );
+          } else if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  final lostThing = snapshot.data!.docs[index];
+                  final photoURL = lostThing.get('photourl');
+                  final description = lostThing.get("description");
+                  final box_num = lostThing.get("box_number");
+                  final lostthingid = lostThing.id;
 
-                    return Card(
-                        margin: EdgeInsets.all(10),
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LostThingDetailView(
-                                            username: snapshot.data!.docs[index]
-                                                .get('username'),
-                                            box_number: box_num,
-                                            photourl: photoURL,
-                                            description: description,
-                                            time: snapshot.data!.docs[index]
-                                                .get('time'),
-                                            id: lostthingid,
-                                          )));
-                            },
-                            child: Stack(children: [
-                              Opacity(
-                                opacity: 8.5,
-                                child: Container(
-                                  height: (MediaQuery.of(context).size.height -
-                                          56) /
-                                      3,
-                                  padding: const EdgeInsets.all(15),
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 1.0,
-                                    ),
-                                    image: DecorationImage(
-                                        opacity: 0.5,
-                                        image: NetworkImage(photoURL),
-                                        fit: BoxFit.cover),
+                  return Card(
+                      margin: EdgeInsets.all(10),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        LostThingDetailView(
+                                          username: snapshot.data!.docs[index]
+                                              .get('username'),
+                                          box_number: box_num,
+                                          photourl: photoURL,
+                                          description: description,
+                                          time: snapshot.data!.docs[index]
+                                              .get('time'),
+                                          id: lostthingid,
+                                        )));
+                          },
+                          child: Stack(children: [
+                            Opacity(
+                              opacity: 0.5,
+                              child: Container(
+                                height: (MediaQuery.of(context).size.height -
+                                    56) /
+                                    3,
+                                padding: const EdgeInsets.all(15),
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                    width: 1.0,
                                   ),
+                                  image: DecorationImage(
+                                      opacity: 0.5,
+                                      image: NetworkImage(photoURL),
+                                      fit: BoxFit.cover),
                                 ),
                               ),
-                              Container(
-                                  height: (MediaQuery.of(context).size.height -
-                                          56) /
-                                      3,
-                                  padding: const EdgeInsets.all(15),
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 3,
-                                    ),
+                            ),
+                            Container(
+                                height: (MediaQuery.of(context).size.height -
+                                    56) /
+                                    3,
+                                padding: const EdgeInsets.all(15),
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 3,
                                   ),
-                                  child: Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(description,
-                                                style: TextStyle(
-                                                    color: Colors.black)),
-                                            Text(
-                                              box_num,
+                                ),
+                                child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(description,
                                               style: TextStyle(
-                                                  color: Colors.black),
-                                            )
-                                          ])))
-                            ])));
-                  });
-            } else {
-              print('hi');
-              return Center(
-                child: Text("No lost things yet"),
-              );
-            }
-          },
-        ),
+                                                  color: Colors.black)),
+                                          Text(
+                                            box_num,
+                                            style: TextStyle(
+                                                color: Colors.black),
+                                          )
+                                        ])))
+                          ])));
+                });
+          } else {
+            return Center(
+              child: Text("No lost things yet"),
+            );
+          }
+        },
       ),
     );
   }

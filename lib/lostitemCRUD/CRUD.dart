@@ -76,14 +76,14 @@ class CRUD {
         .snapshots();
   }
 
-  deleterequest(docid) async {
+  void deleterequest(docid) async {
     FirebaseFirestore.instance
-        .collection('Lostthings')
-        .doc(docid)
-        .delete()
-        .catchError((e) {
-      print(e);
-    });
+      .collection('Requests')
+      .doc(docid)
+      .delete()
+      .catchError((e) {
+        print(e);
+      });
   }
 
   Future<dynamic> getEdevices() async {
