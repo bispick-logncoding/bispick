@@ -1,6 +1,7 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/home.dart';
 import 'package:bispick/pages/itemsdetail.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,7 +33,7 @@ class _AllLostThingsState extends State<AllLostThings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
@@ -58,7 +59,7 @@ class _AllLostThingsState extends State<AllLostThings> {
         ],
         title: Text(
           'All Lost Items',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
         ),
       ),
       body: isLoading
@@ -148,11 +149,11 @@ class _AllLostThingsState extends State<AllLostThings> {
                                         children: [
                                           Text(description,
                                               style: TextStyle(
-                                                  color: Colors.black)),
+                                                  color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Quicksand")),
                                           Text(
                                             box_num,
                                             style: TextStyle(
-                                                color: Colors.black),
+                                                color: Colors.black, fontWeight: FontWeight.w500, fontFamily: "Quicksand"),
                                           )
                                         ])))
                           ])));
