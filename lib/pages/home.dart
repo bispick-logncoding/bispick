@@ -208,7 +208,7 @@ class _MainPageState extends State<MainPage> {
                       margin: EdgeInsets.only(top: 15),
                       child: Text(
                         "Lost Items",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: "Quicksand", color: AppColors.primary),
                       ),
                       padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
                   StreamBuilder<QuerySnapshot>(
@@ -260,8 +260,13 @@ class _MainPageState extends State<MainPage> {
                                       fit: BoxFit.fitWidth,
                                     ),
                                   ),
-                                  title: Text("Found Item: ${description}"),
-                                  subtitle: Text("Location: ${box_num}"),
+                                  title: Text(
+                                      "Found Item: ${description}",
+                                      style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text("Location: ${box_num}",
+                                      style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                                  ),
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                         color: Colors.black, width: 1.5),
