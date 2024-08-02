@@ -6,6 +6,7 @@ import 'dart:ui' as ui;
 
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/camera_web_methods.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -245,7 +246,7 @@ class _PostPageState extends State<PostPage> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: AppColors.primary,
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -256,9 +257,10 @@ class _PostPageState extends State<PostPage> {
                 },
               ),
               title: Text(
-                'I FOUND THIS',
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+                'I Found This',
+                style: TextStyle(
+                  fontFamily: "Quicksand", color: Colors.white, fontWeight: FontWeight.bold
+                ),
               ),
             ),
             body: Form(
@@ -284,7 +286,7 @@ class _PostPageState extends State<PostPage> {
                             labelText: 'Username',
                             hintText: 'What is your name?'),
                         onChanged: (value) {
-                          username = value;
+                          box_number = value;
                         },
                         validator: (value) {
                           // Validate if the input is empty
@@ -307,42 +309,15 @@ class _PostPageState extends State<PostPage> {
                           width: 1.0,
                         ),
                       ),
-                      child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(border: InputBorder.none),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please choose a box';
-                          }
-                          return null;
-                        },
-                        value: box_number,
-                        hint: Text('Select a box'),
-                        isExpanded: true,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: 'Location',
+                            hintText: 'Location Item Found'),
                         onChanged: (value) {
-                          setState(() {
-                            box_number = value!;
-                          });
+                          username = value;
                         },
-                        items: [
-                          DropdownMenuItem<String>(
-                            value: "Box 1",
-                            child: Text('Box 1'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "Box 2",
-                            child: Text('Box 2'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "Box 3",
-                            child: Text('Box 3'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "Box 4",
-                            child: Text('Box 4'),
-                          ),
-                        ],
-                      ),
-                    ),
+                    )),
                     Container(
                       margin:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 12),

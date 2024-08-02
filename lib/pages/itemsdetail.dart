@@ -1,4 +1,5 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -35,7 +36,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: AppColors.primary,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
@@ -47,7 +48,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
           ),
           title: Text(
             "IS THIS YOURS?",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(fontFamily: "Quicksand", color: Colors.white,fontWeight: FontWeight.bold),
           ),
         ),
         body: Container(
@@ -68,15 +69,9 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         child: Container(
                           alignment: Alignment.centerLeft,
                           height: 56,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Text("FOUNDER: ",
-                                style: TextStyle(color: Colors.white)),
-                          ),
+                            child: Text("Founder: ",
+                                style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand",fontWeight: FontWeight.bold, fontSize: 19)),
+
                         ),
                       ),
                     ),
@@ -86,7 +81,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         alignment: Alignment.centerLeft,
                         height: 56,
                         child: Text(widget.username.toString(),
-                            style: TextStyle(color: Colors.black)),
+                            style: TextStyle(color: Colors.black, fontFamily: "Quicksand",fontSize: 19, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ],
@@ -102,8 +97,8 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         alignment: Alignment.centerLeft,
                         height: 56,
                         child: Text(
-                          "FOUND TIME: ",
-                          style: TextStyle(color: Colors.black),
+                          "Found Time: ",
+                          style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand",fontWeight: FontWeight.bold,fontSize: 19),
                         ),
                       ),
                     ),
@@ -113,7 +108,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         alignment: Alignment.centerLeft,
                         height: 56,
                         child: Text(formattedDateTime,
-                            style: TextStyle(color: Colors.black)),
+                            style: TextStyle(color: Colors.black, fontFamily: "Quicksand",fontSize: 19, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ],
@@ -129,8 +124,8 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         alignment: Alignment.centerLeft,
                         height: 56,
                         child: Text(
-                          "LOCATION: ",
-                          style: TextStyle(color: Colors.black),
+                          "Location: ",
+                          style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand",fontWeight: FontWeight.bold, fontSize: 19),
                         ),
                       ),
                     ),
@@ -139,34 +134,30 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                       child: Container(
                         alignment: Alignment.centerLeft,
                         height: 56,
-                        child: Text(widget.box_number),
+                        child: Text(widget.box_number,
+                          style: TextStyle(fontFamily: "Quicksand",fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Column(
                   children: [
-                    Expanded(
-                      flex: 5,
-                      child: Container(
+                      Container(
                         alignment: Alignment.centerLeft,
-                        height: 56,
                         child: Text(
-                          "DESCRIPTON: ",
-                          style: TextStyle(color: Colors.black),
+                          "Description: ",
+                          style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand", fontWeight: FontWeight.bold, fontSize: 19),
                         ),
                       ),
-                    ),
-                    Expanded(
-                        flex: 5,
-                        child: Container(
+                        Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 25),
                             alignment: Alignment.centerLeft,
-                            height: 56,
+
                             child: Text(widget.description,
-                                style: TextStyle(color: Colors.black))))
+                                style: TextStyle(color: Colors.black, fontFamily: "Quicksand", fontSize: 19, fontWeight: FontWeight.bold))),
                   ],
                 ),
               ),
@@ -222,24 +213,19 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                             });
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                         padding: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 10.0),
+                            horizontal: 30.0, vertical: 15.0),
                       ),
-                      child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 10.0),
+                      child:
                         Text(
-                          'YES',
-                          style: TextStyle(color: Colors.white),
+                          'Yes',
+                          style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
                         )
-                      ])))
+                      ))
             ])));
   }
 }

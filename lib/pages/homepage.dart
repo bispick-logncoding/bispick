@@ -102,20 +102,14 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, 'registerView');
-                      },
-                      child: Text(
-                        "Can't access your account? Sign in.",
+                    child:  Text(
+                        "© 2024 Bispick. All rights reserved.",
                         style: TextStyle(
                             color: Colors.black,
                             fontFamily: "Poppins",
-                            decoration: TextDecoration.underline),
+                           ),
                       ),
                     ),
-                  )
-                  ,
                 ],
               ),
             ),
