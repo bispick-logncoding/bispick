@@ -1,5 +1,6 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/services/LocalStorageService.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class _RequestPageState extends State<RequestPage> {
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: AppColors.primary,
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
