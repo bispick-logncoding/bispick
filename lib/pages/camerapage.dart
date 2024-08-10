@@ -286,7 +286,7 @@ class _PostPageState extends State<PostPage> {
                             labelText: 'Username',
                             hintText: 'What is your name?'),
                         onChanged: (value) {
-                          box_number = value;
+                          username = value;
                         },
                         validator: (value) {
                           // Validate if the input is empty
@@ -315,7 +315,7 @@ class _PostPageState extends State<PostPage> {
                             labelText: 'Location',
                             hintText: 'Location Item Found'),
                         onChanged: (value) {
-                          username = value;
+                          box_number = value;
                         },
                     )),
                     Container(

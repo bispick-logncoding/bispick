@@ -47,7 +47,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
             },
           ),
           title: Text(
-            "IS THIS YOURS?",
+            "Is This Yours?",
             style: TextStyle(fontFamily: "Quicksand", color: Colors.white,fontWeight: FontWeight.bold),
           ),
         ),
@@ -97,7 +97,7 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                         alignment: Alignment.centerLeft,
                         height: 56,
                         child: Text(
-                          "Found Time: ",
+                          "Found Date & Time: ",
                           style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand",fontWeight: FontWeight.bold,fontSize: 19),
                         ),
                       ),
