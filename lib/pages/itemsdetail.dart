@@ -162,9 +162,12 @@ class _LostThingDetailViewState extends State<LostThingDetailView> {
                 ),
               ),
               Expanded(
-                child: Image.network(
-                  widget.photourl,
-                  fit: BoxFit.contain,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.network(
+                    widget.photourl,
+                    fit: BoxFit.fitWidth,
+                  )
                 ),
               ),
               Container(
