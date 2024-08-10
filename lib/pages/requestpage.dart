@@ -41,6 +41,7 @@ class _RequestPageState extends State<RequestPage> {
                 icon: Icon(
                   Icons.arrow_back_ios,
                 ),
+                color: Colors.white,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
