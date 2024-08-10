@@ -179,7 +179,16 @@ class _AddRequestState extends State<AddRequest> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: AppColors.primary,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                ),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
               title: Text(
                 'Add Request',
                 style:
@@ -208,6 +217,7 @@ class _AddRequestState extends State<AddRequest> {
                             border: InputBorder.none,
                             labelText: 'Username',
                             hintText: 'What is your name?'),
+                        initialValue: LocalStorageService.loadUser()?.displayName,
                         onChanged: (value) {
                           username = value;
                         },
@@ -291,30 +301,17 @@ class _AddRequestState extends State<AddRequest> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                           padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Upload',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                          ],
-                        ),
+                              horizontal: 30.0, vertical: 15.0),
+                          ),
+                          child: Text(
+                            'Upload',
+                            style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                          )
                       ),
                     )
                   ],

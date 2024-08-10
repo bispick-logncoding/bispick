@@ -370,6 +370,7 @@ class _PostPageState extends State<PostPage> {
                       ),
                     ),
                     Container(
+                      height: 150,
                       margin:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                       padding: EdgeInsets.symmetric(horizontal: 12.0),
