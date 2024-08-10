@@ -5,6 +5,7 @@ import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class Clothing extends StatefulWidget {
   const Clothing({Key? key}) : super(key: key);
@@ -87,6 +88,10 @@ class _ClothingState extends State<Clothing> {
                     final description = lostThing.get('description');
                     final box_num = lostThing.get('box_number');
                     final lostthingid = lostThing.id;
+                    final String dateString = lostThing.get('time');
+                    final DateTime dataTime = DateFormat("yyyy-dd-mm hh:mm").parse(dateString);
+                    String formattedTime = DateFormat('MM-dd-yyyy HH:mm').format(dataTime);
+                    // final DateTime formattedTime = DateFormat('MM-dd-yyyy HH:mm').parse(dateString);
                     return Card(
                       margin: EdgeInsets.all(10),
                       child: GestureDetector(
@@ -165,6 +170,13 @@ class _ClothingState extends State<Clothing> {
                                         ),
                                         Text(
                                           box_num,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
+                                        Text(
+                                          formattedTime,
                                           style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
