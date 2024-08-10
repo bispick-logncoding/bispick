@@ -1,170 +1,16 @@
 import 'dart:html';
 import 'dart:html' as html;
-//import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/camera_web_methods.dart';
 import 'package:bispick/services/LocalStorageService.dart';
-import 'package:bispick/services/UserInfoStorage.dart';
 import 'package:bispick/styles/AppColors.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:random_string/random_string.dart';
-
-// class CameraPage extends StatefulWidget {
-//   const CameraPage({ Key? key }) : super(key: key);
-
-//   @override
-//   _CameraPageState createState() => _CameraPageState();
-// }
-
-// class _CameraPageState extends State<CameraPage> {
-
-//   CameraController? controller;
-//   bool isCameraInitialized = false;
-//   late final List<CameraDescription> cameras;
-//   bool isrecording = false;
-
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     initializeCamera();
-//   }
-
-//   @override
-//   void didChangeAppLifecycleState(AppLifecycleState state) {
-//    final CameraController? cameraController = controller;
-
-//          if (cameraController == null || !cameraController.value.isInitialized) {
-//       return;
-//     }
-
-//     if (state == AppLifecycleState.inactive) {
-//       // Free up memory when camera not active
-//       cameraController.dispose();
-//     } else if (state == AppLifecycleState.resumed) {
-//       // Reinitialize the camera with same properties
-//       onNewCameraSelected(cameraController.description);
-//     }
-//   }
-
-//   Future<void> initializeCamera() async {
-//     cameras = await availableCameras();
-//     await onNewCameraSelected(cameras.first);
-//     setState(() {
-//       isCameraInitialized = true;
-//     });
-//   }
-
-//   Future<void> onNewCameraSelected(CameraDescription cameraDescription) async {
-//     final previousCameraController = controller;
-
-//     final CameraController cameraController = CameraController(
-//       cameraDescription,
-//       ResolutionPreset.veryHigh,
-//       imageFormatGroup: ImageFormatGroup.jpeg
-//     );
-
-//     try {
-//       await cameraController.initialize();
-//     } on CameraException catch (e) {
-//       print('Error in camera');
-//     }
-
-//     await previousCameraController?.dispose();
-
-//     if(mounted){
-//       setState(() {
-//         controller = cameraController;
-//       });
-//     }
-
-//     cameraController.addListener(() {
-
-//     });
-//   }
-
-//   Future<XFile?> capturePhoto() async {
-//     final CameraController? cameraController = controller;
-//     if(cameraController!.value.isTakingPicture){
-//       return null;
-//     }
-//     try{
-//       await cameraController.setFlashMode(FlashMode.off); //optional
-//       XFile file = await cameraController.takePicture();
-//       return file;
-//     } on CameraException catch (e) {
-//       print('Error captuing photo');
-//     }
-
-//   }
-
-//   void onTakePhotoPressed() async {
-//     final navigator = Navigator.of(context);
-//     final xFile = await capturePhoto();
-//     if (xFile != null) {
-//       if (xFile.path.isNotEmpty) {
-//         navigator.push(
-//           MaterialPageRoute(
-//             builder: (context) => PostPage(
-//               imgPath: xFile.path,
-//             ),
-//           ),
-//         );
-//       }
-//     }
-
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     if(isCameraInitialized){
-//       return SafeArea(
-//         child: Scaffold(
-//           body: Container(
-//             height: MediaQuery.of(context).size.height,
-//             width: MediaQuery.of(context).size.width,
-//             child: Stack(
-//               children: [
-//                 CameraPreview(controller!),
-//                 Container(
-//                   child: (!isrecording)?
-//                     Align(
-//                       alignment: Alignment.bottomCenter,
-//                       child: ElevatedButton(
-//                         style: ElevatedButton.styleFrom(
-//                           fixedSize: Size(70,70),
-//                           shape: CircleBorder(),
-//                           backgroundColor: Colors.white
-//                         ),
-//                         onPressed: (){
-//                           onTakePhotoPressed();
-//                         },
-//                         child: Icon(
-//                           Icons.add
-//                         ),
-//                       ),
-//                     )
-//                     :Container()
-//                   ,
-//                 )
-//               ],
-//             ),
-//           ),
-//         )
-//         );
-//     } else {
-//       return const Center(
-//         child: CircularProgressIndicator(),
-//       );
-//     }
-//   }
-// }
 
 class PostPage extends StatefulWidget {
   final Uint8List? imgPath;
@@ -183,18 +29,9 @@ class _PostPageState extends State<PostPage> {
   String? category;
   String? description;
   String? photoURL;
-//  ui.Image? image;
 
   CRUD crud = new CRUD();
   final formKey = GlobalKey<FormState>();
-  // Retrieve data from SharedPreferences
-  // getusername() async {
-  //   return await Helperfunctions.getUserNameSharedPreference().then((value){
-  //     setState(() {
-  //       username = value;
-  //     });
-  //   });
-  // }
 
   void upload() async {
     Reference rootreference = FirebaseStorage.instance
@@ -212,7 +49,7 @@ class _PostPageState extends State<PostPage> {
             DateTime.now().toString(), photoURL)
         .then((value) {
       isuploading = false;
-      Navigator.popAndPushNamed(context, 'lostthingsView');
+      Navigator.popAndPushNamed(context, 'allLostItemsView');
     });
   }
 
@@ -429,7 +266,7 @@ class _PostPageState extends State<PostPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
@@ -819,70 +656,6 @@ class _IosCameraViewState extends State<IosCameraView> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: CameraPreview(controller!)),
-            /*Material(
-              child: ToggleButtons(
-                isSelected: List<bool>.generate(widget.cameras.length, (index) => cameraDescription == widget.cameras[index]),
-                onPressed: (int newIndex) async {
-                  if (controller != null) {
-                    await controller!.dispose();
-                  }
-                  setState(() {
-                    controller = null;
-                    cameraDescription = widget.cameras[newIndex];
-                  });
-
-                  initCam(widget.cameras[newIndex]);
-                },
-                children: widget.cameras.map<Widget>((camera) {
-                  if(camera.lensDirection == CameraLensDirection.back){
-                    return Icon(Icons.camera_front);
-                  }
-                  else if (camera.lensDirection == CameraLensDirection.front){
-                    return Icon(Icons.camera_rear);
-                  }
-                  else { return Container(height: 0, width: 0,color: Colors.transparent,);}
-                }).toList(),
-              ),
-            ),
-            */
-            /*ElevatedButton(
-              onPressed: controller == null
-                  ? null
-                  : () async {
-                await controller!.startVideoRecording();
-                await Future.delayed(Duration(seconds: 5));
-                final file = await controller!.stopVideoRecording();
-                final bytes = await file.readAsBytes();
-                final uri = Uri.dataFromBytes(bytes,
-                    mimeType: 'video/webm;codecs=vp8');
-      
-                final link = AnchorElement(href: uri.toString());
-                link.download = 'recording.webm';
-                link.click();
-                link.remove();
-              },
-              child: Text('Record 5 second video.'),
-            ),*/
-            // Align(
-            //   alignment: Alignment.topRight,
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(20),
-            //     child: Container(
-            //       width: 70,
-            //       height: 70,
-            //       decoration: BoxDecoration(
-            //         shape: BoxShape.rectangle,
-            //         color: Colors.transparent,
-            //       ),
-            //       child: TextButton(
-            //         child: Text('Find my lost item'),
-            //         onPressed: (){
-            //           Navigator.of(context).popAndPushNamed('lostthingsView');
-            //         },
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Align(
               //alignment: Alignment.bottomCenter,
               child: GestureDetector(
@@ -899,21 +672,6 @@ class _IosCameraViewState extends State<IosCameraView> {
                             ),
                           );
                         });
-
-                        // final link = AnchorElement(
-                        //     href: Uri.dataFromBytes(bytes, mimeType: 'image/png')
-                        //         .toString());
-
-                        //link.download = 'picture.png';
-                        //link.click();
-                        //link.remove();
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) => PostPage(
-                        //       imgPath: bytes,
-                        //     ),
-                        //   ),
-                        // );ß
                       },
                 child: Stack(
                   children: [
@@ -935,37 +693,6 @@ class _IosCameraViewState extends State<IosCameraView> {
                               ),
                             ],
                           ),
-                          // child: GestureDetector(
-                          //   onTap: controller == null
-                          //       ? null
-                          //       : () async {
-                          //     final file = await controller!.takePicture();
-                          //     await file.readAsBytes().then((value){
-                          //       Navigator.of(context).push(
-                          //       MaterialPageRoute(
-                          //         builder: (context) => PostPage(
-                          //           imgPath: value,
-                          //         ),
-                          //       ),
-                          //     );
-                          //     });
-
-                          //     // final link = AnchorElement(
-                          //     //     href: Uri.dataFromBytes(bytes, mimeType: 'image/png')
-                          //     //         .toString());
-
-                          //     //link.download = 'picture.png';
-                          //     //link.click();
-                          //     //link.remove();
-                          //     // Navigator.of(context).push(
-                          //     //   MaterialPageRoute(
-                          //     //     builder: (context) => PostPage(
-                          //     //       imgPath: bytes,
-                          //     //     ),
-                          //     //   ),
-                          //     // );ß
-                          //   },
-                          // ),
                         ),
                       ),
                     ),
