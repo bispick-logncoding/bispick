@@ -210,90 +210,94 @@ class _MainPageState extends State<MainPage> {
                         "Lost Items",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: "Quicksand", color: AppColors.primary),
                       ),
-                      padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
-                  StreamBuilder<QuerySnapshot>(
-                      stream: lostthingstream as Stream<QuerySnapshot>,
-                      builder: (context, snapshot) {
-                        if (snapshot.data!.size == 0) {
-                          return Center(
-                            child: Text(
-                              'There are no lost items yet.',
-                              style: TextStyle(
-                                color: Colors.black,
+                      padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 2 + 30,
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: lostthingstream as Stream<QuerySnapshot>,
+                        builder: (context, snapshot) {
+                          if (snapshot.data!.size == 0) {
+                            return Center(
+                              child: Text(
+                                'There are no lost items yet.',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                          );
-                        }
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.orange,
-                            ),
-                          );
-                        } else if (snapshot.hasError) {
-                          print(snapshot.connectionState);
-                          return Center(
-                            child: Text('ERROR HAS HAPPENED'),
-                          );
-                        }
-                        return ListView.builder(
-                            padding: EdgeInsets.all(8),
-                            itemCount: (snapshot.data!.size < 5 &&
-                                    snapshot.data!.size > 0)
-                                ? snapshot.data!.size
-                                : 5,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              final lostThing = snapshot.data!.docs[index];
-                              final photoUrl = lostThing.get('photourl');
-                              final description = lostThing.get('description');
-                              final box_num = lostThing.get('box_number');
-                              final lostthingid = lostThing.id;
-                              return Container(
-                                margin: EdgeInsets.all(8),
-                                child: ListTile(
-                                  leading: Container(
-                                    width: 100,
-                                    child: Image.network(
-                                      photoUrl,
-                                      fit: BoxFit.fitWidth,
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.orange,
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            print(snapshot.connectionState);
+                            return Center(
+                              child: Text('ERROR HAS HAPPENED'),
+                            );
+                          }
+                          return ListView.builder(
+                              padding: EdgeInsets.all(8),
+                              itemCount: (snapshot.data!.size < 5 &&
+                                  snapshot.data!.size > 0)
+                                  ? snapshot.data!.size
+                                  : 5,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                final lostThing = snapshot.data!.docs[index];
+                                final photoUrl = lostThing.get('photourl');
+                                final description = lostThing.get('description');
+                                final box_num = lostThing.get('box_number');
+                                final lostthingid = lostThing.id;
+                                return Container(
+                                  margin: EdgeInsets.all(8),
+                                  child: ListTile(
+                                    leading: Container(
+                                      width: 100,
+                                      child: Image.network(
+                                        photoUrl,
+                                        fit: BoxFit.fitWidth,
+                                      ),
                                     ),
-                                  ),
-                                  title: Text(
+                                    title: Text(
                                       "Found Item: ${description}",
                                       style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
-                                  ),
-                                  subtitle: Text("Location: ${box_num}",
+                                    ),
+                                    subtitle: Text("Location: ${box_num}",
                                       style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Colors.black, width: 1.5),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LostThingDetailView(
+                                                    username: snapshot
+                                                        .data!.docs[index]
+                                                        .get('username'),
+                                                    box_number: box_num,
+                                                    photourl: photoUrl,
+                                                    description: description,
+                                                    time: snapshot
+                                                        .data!.docs[index]
+                                                        .get('time'),
+                                                    id: lostthingid,
+                                                  )));
+                                    },
                                   ),
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Colors.black, width: 1.5),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LostThingDetailView(
-                                                  username: snapshot
-                                                      .data!.docs[index]
-                                                      .get('username'),
-                                                  box_number: box_num,
-                                                  photourl: photoUrl,
-                                                  description: description,
-                                                  time: snapshot
-                                                      .data!.docs[index]
-                                                      .get('time'),
-                                                  id: lostthingid,
-                                                )));
-                                  },
-                                ),
-                              );
-                            });
-                      }),
+                                );
+                              });
+                        }),
+                  ),
                 ],
               ),
             ),

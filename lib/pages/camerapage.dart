@@ -177,7 +177,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   bool isuploading = false;
-  String? username;
+  String? username = LocalStorageService.loadUser()?.displayName;
   String? useremail;
   String? box_number;
   String? category;
@@ -290,7 +290,7 @@ class _PostPageState extends State<PostPage> {
                         onChanged: (value) {
                           username = value;
                         },
-                        initialValue: LocalStorageService.loadUser()?.displayName,
+                        initialValue: username,
                         validator: (value) {
                           // Validate if the input is empty
                           if (value == null || value.isEmpty) {
@@ -431,27 +431,14 @@ class _PostPageState extends State<PostPage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                           padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
+                              horizontal: 30.0, vertical: 15.0),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Upload',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          'Upload',
+                          style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontWeight: FontWeight.bold),
                         ),
                       ),
                     )
@@ -624,7 +611,7 @@ class _AndroidCameraViewState extends State<AndroidCameraView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
@@ -761,7 +748,7 @@ class _IosCameraViewState extends State<IosCameraView> {
     if (error != null) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: AppColors.primary,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
@@ -796,7 +783,7 @@ class _IosCameraViewState extends State<IosCameraView> {
     if (!controller!.value.isInitialized) {
       return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.primary,
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios,
@@ -812,7 +799,7 @@ class _IosCameraViewState extends State<IosCameraView> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,

@@ -143,7 +143,7 @@ class AddRequest extends StatefulWidget {
 
 class _AddRequestState extends State<AddRequest> {
   bool isuploading = false;
-  String? username;
+  String? username = LocalStorageService.loadUser()?.displayName;
   String? title;
   String? content;
 
@@ -217,7 +217,7 @@ class _AddRequestState extends State<AddRequest> {
                             border: InputBorder.none,
                             labelText: 'Username',
                             hintText: 'What is your name?'),
-                        initialValue: LocalStorageService.loadUser()?.displayName,
+                        initialValue: username,
                         onChanged: (value) {
                           username = value;
                         },
