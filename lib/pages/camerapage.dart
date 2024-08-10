@@ -6,6 +6,8 @@ import 'dart:ui' as ui;
 
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/camera_web_methods.dart';
+import 'package:bispick/services/LocalStorageService.dart';
+import 'package:bispick/services/UserInfoStorage.dart';
 import 'package:bispick/styles/AppColors.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -288,6 +290,7 @@ class _PostPageState extends State<PostPage> {
                         onChanged: (value) {
                           username = value;
                         },
+                        initialValue: LocalStorageService.loadUser()?.displayName,
                         validator: (value) {
                           // Validate if the input is empty
                           if (value == null || value.isEmpty) {
