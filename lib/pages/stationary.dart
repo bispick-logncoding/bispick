@@ -6,14 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Stationary extends StatefulWidget {
-  const Stationary({Key? key}) : super(key: key);
+class Stationery extends StatefulWidget {
+  const Stationery({Key? key}) : super(key: key);
 
   @override
-  _StationaryState createState() => _StationaryState();
+  _StationeryState createState() => _StationeryState();
 }
 
-class _StationaryState extends State<Stationary> {
+class _StationeryState extends State<Stationery> {
   CRUD crud = new CRUD();
   Stream? stationary;
 
@@ -43,7 +43,7 @@ class _StationaryState extends State<Stationary> {
         ),
         backgroundColor: AppColors.primary,
         title: Text(
-          'Lost Stationary',
+          'Lost Stationery',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         actions: [
@@ -177,7 +177,7 @@ class _StationaryState extends State<Stationary> {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                    child: Text('No Lost Stationary yet.'),
+                    child: Text('No Lost Stationery yet.'),
                   ),
                 );
               }

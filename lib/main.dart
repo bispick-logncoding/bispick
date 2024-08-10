@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       'allLostItemsView': (context) => AllLostThings(),
       'requestView': (context) => RequestPage(),
       'othersView': (context) => Others(),
-      'stationaryView': (context) => Stationary(),
+      'stationaryView': (context) => Stationery(),
       'edeviceView': (context) => Edevice(),
       'clothingView': (context) => Clothing(),
     });
