@@ -1,6 +1,7 @@
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/home.dart';
 import 'package:bispick/pages/itemsdetail.dart';
+import 'package:bispick/styles/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -41,7 +42,7 @@ class _EdeviceState extends State<Edevice> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primary,
         title: Text(
           'Lost E-devices',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),

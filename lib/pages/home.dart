@@ -175,7 +175,7 @@ class _MainPageState extends State<MainPage> {
                             width: (MediaQuery.of(context).size.width - 3) / 4,
                             color: AppColors.secondary,
                             child: Text(
-                              "Stationary",
+                              "Stationery",
                               style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
                             ),
                           ),
