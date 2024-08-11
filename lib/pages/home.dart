@@ -254,11 +254,18 @@ class _MainPageState extends State<MainPage> {
                                 final box_num = lostThing.get('box_number');
                                 final lostthingid = lostThing.id;
                                 return Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: Colors.black, // Border color
+                                        width: 1.5, // Border width
+                                      )
+                                  ),
                                   margin: EdgeInsets.all(8),
                                   child: ListTile(
                                     leading: Container(
                                       width: 100,
-                                      child: Image.network(
+                                     child: Image.network(
                                         photoUrl,
                                         fit: BoxFit.fitWidth,
                                       ),
@@ -269,11 +276,6 @@ class _MainPageState extends State<MainPage> {
                                     ),
                                     subtitle: Text("Location: ${box_num}",
                                       style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Colors.black, width: 1.5),
-                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                     onTap: () {
                                       Navigator.push(
