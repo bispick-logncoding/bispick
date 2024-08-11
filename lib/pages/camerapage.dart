@@ -49,6 +49,7 @@ class _PostPageState extends State<PostPage> {
             DateTime.now().toString(), photoURL)
         .then((value) {
       isuploading = false;
+      Navigator.pop(context);
       Navigator.popAndPushNamed(context, 'allLostItemsView');
     });
   }
