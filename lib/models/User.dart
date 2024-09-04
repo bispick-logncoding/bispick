@@ -4,6 +4,7 @@ class User {
   String? displayName;
   String? photoUrl;
   String? idToken;
+  String? accessToken;
   String? serverAuthCode;
 
   User({
@@ -12,6 +13,7 @@ class User {
     this.displayName,
     this.photoUrl,
     required this.idToken,
+    this.accessToken,
     this.serverAuthCode,
   });
 
@@ -23,6 +25,7 @@ class User {
       photoUrl: json['photoUrl'],
       idToken: json['idToken'],
       serverAuthCode: json['serverAuthCode'],
+      accessToken: json['accessToken'],
     );
   }
 
@@ -34,6 +37,7 @@ class User {
       'photoUrl': photoUrl ?? '',
       'idToken': idToken ?? '',
       'serverAuthCode': serverAuthCode ?? '',
+      'accessToken': accessToken ?? '',
     };
   }
 }

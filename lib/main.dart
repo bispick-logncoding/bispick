@@ -1,9 +1,10 @@
 import 'package:bispick/firebase_options.dart';
+import 'package:bispick/pages/RouteGuard.dart';
 import 'package:bispick/pages/alllostthings.dart';
 import 'package:bispick/pages/camerapage.dart';
 import 'package:bispick/pages/clothing.dart';
 import 'package:bispick/pages/edevice.dart';
-import 'package:bispick/pages/homepage.dart';
+import 'package:bispick/pages/LoginPage.dart';
 import 'package:bispick/pages/others.dart';
 import 'package:bispick/pages/registerpage.dart';
 import 'package:bispick/pages/requestpage.dart';
@@ -26,9 +27,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(title: 'Bispick', initialRoute: 'loginView', routes: {
-      'loginView': (context) => Homepage(),
+      'loginView': (context) => LoginPage(),
       'registerView': (context) => RegisterPage(),
-      'homeView': (context) => MainPage(),
+      'homeView': (context) => RouteGuard(child: MainPage()),
       'cameraView': (context) => CameraPage(),
       'allLostItemsView': (context) => AllLostThings(),
       'requestView': (context) => RequestPage(),

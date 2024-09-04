@@ -7,14 +7,14 @@ import 'package:google_sign_in_web/google_sign_in_web.dart';
 
 import '../models/User.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
   final GoogleSignInPlugin plugin = GoogleSignInPlugin();
@@ -69,23 +69,24 @@ class _HomepageState extends State<Homepage> {
                       ),
                       onPressed: () async {
                         var result = await plugin.isSignedIn();
-                        print(result);
                         if (result) {
                           Navigator.of(context).pushNamed("homeView");
                         }
                         try {
-                          var googleSignInUserData = await plugin.signInSilently();
-                          if (googleSignInUserData == null) {
-                            googleSignInUserData = await plugin.signIn();
-                          }
+                          // var googleSignInUserData = await plugin.signInSilently();
+                          // if (googleSignInUserData == null) {
+                          var  googleSignInUserData = await plugin.signIn();
+                          // }
+                          var token = await plugin.getTokens(email: googleSignInUserData!.email);
+
                           User user = User(
                             id: googleSignInUserData!.id,
                             email: googleSignInUserData!.email,
                             displayName: googleSignInUserData!.displayName,
                             photoUrl: googleSignInUserData!.photoUrl,
                             idToken: googleSignInUserData!.idToken,
-                            serverAuthCode: googleSignInUserData!
-                                .serverAuthCode,
+                            accessToken: token!.accessToken,
+                            serverAuthCode: googleSignInUserData!.serverAuthCode,
                           );
                           LocalStorageService.saveUser(user);
                           Navigator.of(context).pushNamed("homeView");
