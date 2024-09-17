@@ -43,9 +43,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 margin: EdgeInsets.only(top: 100, bottom: 50),
                 child: SizedBox(
-                  width: 400,
+                  width: 250,
                   child: Image.asset(
-                      'assets/bispick.png', fit: BoxFit.cover
+                      'assets/lost_and_found.png', fit: BoxFit.fitWidth
                   )
                 )
               ),

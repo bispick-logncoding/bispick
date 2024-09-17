@@ -84,6 +84,9 @@ flutter:
   assets:
     - assets/bispick.png
     - assets/bispick-white.png
+    - assets/lost_and_found_white.png
+    - assets/lost_and_found.png
+    - assets/profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -45,9 +45,12 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         Expanded(
                             flex: 2,
-                            child:Image.asset(
-                              'assets/bispick-white.png',
-
+                            child: SizedBox(
+                              width: 70,
+                              child: Image.asset(
+                                'assets/lost_and_found_white.png',
+                                fit: BoxFit.fitWidth,
+                              ),
                             )
                         ),
                         Expanded(
