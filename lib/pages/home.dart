@@ -409,15 +409,15 @@ class CustomSearchDelegate extends SearchDelegate<String> {
     // TODO: implement buildSuggestions
     return StreamBuilder(
       stream: FirebaseFirestore.instance
-          .collection('Lostthings')
-          .orderBy('time')
-          .snapshots(),
+        .collection('Lostthings')
+        .orderBy('time', descending: true)
+        .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Text('Please Search for your lost item.');
         }
         final results = snapshot.data!.docs.where((DocumentSnapshot s) =>
-            s['description'].toString().contains(query));
+            s['description'].toString().contains(query) && s['foundStatus'] == "Approved");
         return ListView(
           children: results
               .map<Widget>((DocumentSnapshot e) => Card(

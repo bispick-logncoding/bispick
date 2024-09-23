@@ -63,7 +63,7 @@ class _ClothingState extends State<Clothing> {
         ],
       ),
       body: Container(
-        child: StreamBuilder<QuerySnapshot>(
+        child: clothing != null ? StreamBuilder<QuerySnapshot>(
           stream: clothing as Stream<QuerySnapshot>,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -207,6 +207,10 @@ class _ClothingState extends State<Clothing> {
               return Center(child: Text('No lost things yet'));
             }
           },
+        ) : Center(
+          child: CircularProgressIndicator(
+            color: Colors.black,
+          ),
         ),
       ),
     );

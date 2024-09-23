@@ -20,7 +20,7 @@ class _AllLostThingsState extends State<AllLostThings> {
   @override
   void initState() {
     isLoading = true;
-    crud.getallLostthings().then((value) {
+    crud.getAllApprovedLostThings().then((value) {
       setState(() {
         isLoading = false;
         lostthingstream = value;

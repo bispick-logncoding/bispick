@@ -98,10 +98,19 @@ class CRUD {
       });
   }
 
+  Future<dynamic> getAllApprovedLostThings() async {
+    return await FirebaseFirestore.instance
+        .collection('Lostthings')
+        .where('foundStatus', isEqualTo: 'Approved')
+        .orderBy('time', descending: true)
+        .snapshots();
+  }
+
   Future<dynamic> getEdevices() async {
     return await FirebaseFirestore.instance
         .collection('Lostthings')
         .where('category', isEqualTo: 'E-Device')
+        .where('foundStatus', isEqualTo: 'Approved')
         .orderBy('time', descending: true)
         .snapshots();
   }
@@ -110,6 +119,7 @@ class CRUD {
     return await FirebaseFirestore.instance
         .collection('Lostthings')
         .where('category', isEqualTo: 'Clothing')
+        .where('foundStatus', isEqualTo: 'Approved')
         .orderBy('time', descending: true)
         .snapshots();
   }
@@ -118,6 +128,7 @@ class CRUD {
     return await FirebaseFirestore.instance
         .collection('Lostthings')
         .where('category', isEqualTo: 'Stationery')
+        .where('foundStatus', isEqualTo: 'Approved')
         .orderBy('time', descending: true)
         .snapshots();
   }
@@ -126,6 +137,7 @@ class CRUD {
     return await FirebaseFirestore.instance
         .collection('Lostthings')
         .where('category', isEqualTo: 'Others')
+        .where('foundStatus', isEqualTo: 'Approved')
         .orderBy('time', descending: true)
         .snapshots();
   }

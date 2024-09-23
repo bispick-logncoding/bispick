@@ -68,7 +68,7 @@ class _EdeviceState extends State<Edevice> {
         child: CircularProgressIndicator(color: Colors.black),
       )
           : Container(
-        child: StreamBuilder<QuerySnapshot>(
+        child: edevices != null ? StreamBuilder<QuerySnapshot>(
           stream: edevices,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -193,6 +193,10 @@ class _EdeviceState extends State<Edevice> {
               return Center(child: Text('No lost things yet'));
             }
           },
+        ) : Center(
+          child: CircularProgressIndicator(
+            color: Colors.black,
+          ),
         ),
       ),
     );
