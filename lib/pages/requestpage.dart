@@ -213,6 +213,7 @@ class _AddRequestState extends State<AddRequest> {
                         ),
                       ),
                       child: TextFormField(
+                        readOnly: true,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             labelText: 'Username',

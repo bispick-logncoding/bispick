@@ -1,3 +1,4 @@
+import 'package:bispick/enums/found_status.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -14,7 +15,8 @@ class CRUD {
         'category': category,
         'description': description,
         'time': time,
-        'photourl': photoURL
+        'photourl': photoURL,
+        'foundStatus': FoundStatus.Pending.value
       };
       await newLostthingRef.set(lostthing);
     } on Exception catch (e) {
@@ -40,6 +42,16 @@ class CRUD {
     });
     String filepath = extractFilePathFromURL(photourl);
     FirebaseStorage.instance.ref().child(filepath).delete();
+  }
+
+  updateFoundStatus(docid, foundStatus) async {
+    FirebaseFirestore.instance
+        .collection('Lostthings')
+        .doc(docid)
+        .update({'foundStatus': foundStatus})
+        .catchError((e) {
+      print(e);
+    });
   }
 
   Future<dynamic> getallLostthings() async {

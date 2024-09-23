@@ -50,7 +50,7 @@ class _PostPageState extends State<PostPage> {
         .then((value) {
       isuploading = false;
       Navigator.pop(context);
-      Navigator.popAndPushNamed(context, 'allLostItemsView');
+      Navigator.popAndPushNamed(context, 'myPageView');
     });
   }
 
@@ -121,6 +121,7 @@ class _PostPageState extends State<PostPage> {
                         ),
                       ),
                       child: TextFormField(
+                        readOnly: true,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             labelText: 'Username',

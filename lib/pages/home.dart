@@ -37,80 +37,115 @@ class _MainPageState extends State<MainPage> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Expanded(
+            Expanded(
                 flex: 2,
                 child: Container(
                     color: AppColors.primary,
-                  child: Column(
-                      children: [
-                        Expanded(
-                            flex: 2,
-                            child: SizedBox(
-                              width: 70,
-                              child: Image.asset(
-                                'assets/lost_and_found_white.png',
-                                fit: BoxFit.fitWidth,
+                    child: Column(children: [
+                      Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Spacer(),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: 70,
+                                    child: Image.asset(
+                                      'assets/lost_and_found_white.png',
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            )
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 56,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: EdgeInsets.symmetric(vertical: 16),
-                                  color: AppColors.primary,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('allLostItemsView');
-                                    },
-                                    child: Text(
-                                      "Lost",
-                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 56,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: EdgeInsets.symmetric(vertical: 16),
-                                  color: AppColors.primary,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('cameraView');
-                                    },
-                                    child: Text(
-                                      "Found",
-                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 56,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: EdgeInsets.symmetric(vertical: 16),
-                                  color: AppColors.primary,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('requestView');
-                                    },
-                                    child: Text(
-                                      "Request",
-                                      style: TextStyle(color: Colors.white, fontFamily: "Quicksand", fontSize: 17, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                      margin: EdgeInsets.only(right: 20),
+                                      width: 30,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('myPageView');
+                                        },
+                                        child: Image.asset(
+                                          'assets/profile.png',
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                      )
                                 )
-                              ],
-                            )
-                        )
-
-                      ]
-                  )
-                )
-
-            ),
+                              ))
+                            ],
+                          )),
+                      Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 56,
+                                width: MediaQuery.of(context).size.width / 3,
+                                margin: EdgeInsets.symmetric(vertical: 16),
+                                color: AppColors.primary,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('allLostItemsView');
+                                  },
+                                  child: Text(
+                                    "Lost",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "Quicksand",
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 56,
+                                width: MediaQuery.of(context).size.width / 3,
+                                margin: EdgeInsets.symmetric(vertical: 16),
+                                color: AppColors.primary,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('cameraView');
+                                  },
+                                  child: Text(
+                                    "Found",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "Quicksand",
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 56,
+                                width: MediaQuery.of(context).size.width / 3,
+                                margin: EdgeInsets.symmetric(vertical: 16),
+                                color: AppColors.primary,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('requestView');
+                                  },
+                                  child: Text(
+                                    "Request",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "Quicksand",
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ))
+                    ]))),
             Expanded(
               flex: 7,
               child: Column(
@@ -119,108 +154,132 @@ class _MainPageState extends State<MainPage> {
                     width: MediaQuery.of(context).size.width,
                     child: Text(
                       "Categories",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: "Quicksand", color: AppColors.primary),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontFamily: "Quicksand",
+                          color: AppColors.primary),
                     ),
                     margin: EdgeInsets.only(top: 25),
                     padding: EdgeInsets.only(left: 10, bottom: 10),
                   ),
                   Container(
-                    color: AppColors.secondary,
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('edeviceView');
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 56,
-                            width: (MediaQuery.of(context).size.width - 3) / 4,
-                            color: AppColors.secondary,
-                            child: Text(
-                              "E-Device",
-                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                      color: AppColors.secondary,
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('edeviceView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width:
+                                  (MediaQuery.of(context).size.width - 3) / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "E-Device",
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontFamily: "Quicksand"),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 1,  // 세로 막대의 두께
-                          color: Colors.grey,  // 세로 막대의 색상
-                          height: 36,  // 세로 막대의 높이
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('clothingView');
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 56,
-                            width: (MediaQuery.of(context).size.width - 3) / 4,
-                            color: AppColors.secondary,
-                            child: Text(
-                              "Clothing",
-                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                          Container(
+                            width: 1, // 세로 막대의 두께
+                            color: Colors.grey, // 세로 막대의 색상
+                            height: 36, // 세로 막대의 높이
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('clothingView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width:
+                                  (MediaQuery.of(context).size.width - 3) / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "Clothing",
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontFamily: "Quicksand"),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 1,  // 세로 막대의 두께
-                          color: Colors.grey,  // 세로 막대의 색상
-                          height: 36,  // 세로 막대의 높이
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('stationaryView');
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 56,
-                            width: (MediaQuery.of(context).size.width - 3) / 4,
-                            color: AppColors.secondary,
-                            child: Text(
-                              "Stationery",
-                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                          Container(
+                            width: 1, // 세로 막대의 두께
+                            color: Colors.grey, // 세로 막대의 색상
+                            height: 36, // 세로 막대의 높이
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('stationaryView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width:
+                                  (MediaQuery.of(context).size.width - 3) / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "Stationery",
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontFamily: "Quicksand"),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 1,  // 세로 막대의 두께
-                          color: Colors.grey,  // 세로 막대의 색상
-                          height: 36,  // 세로 막대의 높이
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('othersView');
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 56,
-                            width: (MediaQuery.of(context).size.width - 3) / 4,
-                            color: AppColors.secondary,
-                            child: Text(
-                              "Others",
-                              style: TextStyle(color: AppColors.primary, fontFamily: "Quicksand"),
+                          Container(
+                            width: 1, // 세로 막대의 두께
+                            color: Colors.grey, // 세로 막대의 색상
+                            height: 36, // 세로 막대의 높이
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('othersView');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 56,
+                              width:
+                                  (MediaQuery.of(context).size.width - 3) / 4,
+                              color: AppColors.secondary,
+                              child: Text(
+                                "Others",
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontFamily: "Quicksand"),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ),
+                        ],
+                      )),
                   Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.only(top: 15),
                       child: Text(
                         "Lost Items",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: "Quicksand", color: AppColors.primary),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            fontFamily: "Quicksand",
+                            color: AppColors.primary),
                       ),
-                      padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)
-                  ),
+                      padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
                   Container(
                     height: MediaQuery.of(context).size.height / 2 + 30,
                     child: StreamBuilder<QuerySnapshot>(
                         stream: lostthingstream as Stream<QuerySnapshot>,
                         builder: (context, snapshot) {
-                          if (snapshot.data!.size == 0) {
+
+                          var filteredData = snapshot.data!.docs.where((document) {
+                            var data = document.data() as Map<String, dynamic>;
+                            return data['foundStatus'] == "Approved";
+                          }).toList();
+
+                          if (filteredData.isEmpty) {
                             return Center(
                               child: Text(
                                 'There are no lost items yet.',
@@ -245,15 +304,16 @@ class _MainPageState extends State<MainPage> {
                           }
                           return ListView.builder(
                               padding: EdgeInsets.all(8),
-                              itemCount: (snapshot.data!.size < 5 &&
-                                  snapshot.data!.size > 0)
-                                  ? snapshot.data!.size
+                              itemCount: (filteredData.length < 5 &&
+                                  filteredData.length > 0)
+                                  ? filteredData.length
                                   : 5,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                final lostThing = snapshot.data!.docs[index];
+                                final lostThing = filteredData[index];
                                 final photoUrl = lostThing.get('photourl');
-                                final description = lostThing.get('description');
+                                final description =
+                                    lostThing.get('description');
                                 final box_num = lostThing.get('box_number');
                                 final lostthingid = lostThing.id;
                                 return Container(
@@ -262,23 +322,27 @@ class _MainPageState extends State<MainPage> {
                                       border: Border.all(
                                         color: Colors.black, // Border color
                                         width: 1.5, // Border width
-                                      )
-                                  ),
+                                      )),
                                   margin: EdgeInsets.all(8),
                                   child: ListTile(
                                     leading: Container(
                                       width: 100,
-                                     child: Image.network(
+                                      child: Image.network(
                                         photoUrl,
                                         fit: BoxFit.fitWidth,
                                       ),
                                     ),
                                     title: Text(
                                       "Found Item: ${description}",
-                                      style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontFamily: "Quicksand",
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    subtitle: Text("Location: ${box_num}",
-                                      style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                                    subtitle: Text(
+                                      "Location: ${box_num}",
+                                      style: TextStyle(
+                                          fontFamily: "Quicksand",
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     onTap: () {
                                       Navigator.push(
@@ -286,14 +350,12 @@ class _MainPageState extends State<MainPage> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   LostThingDetailView(
-                                                    username: snapshot
-                                                        .data!.docs[index]
+                                                    username: filteredData[index]
                                                         .get('username'),
                                                     box_number: box_num,
                                                     photourl: photoUrl,
                                                     description: description,
-                                                    time: snapshot
-                                                        .data!.docs[index]
+                                                    time: filteredData[index]
                                                         .get('time'),
                                                     id: lostthingid,
                                                   )));

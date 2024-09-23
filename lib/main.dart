@@ -1,4 +1,5 @@
 import 'package:bispick/firebase_options.dart';
+import 'package:bispick/pages/MyPage.dart';
 import 'package:bispick/pages/RouteGuard.dart';
 import 'package:bispick/pages/alllostthings.dart';
 import 'package:bispick/pages/camerapage.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       'loginView': (context) => LoginPage(),
       'registerView': (context) => RegisterPage(),
       'homeView': (context) => RouteGuard(child: MainPage()),
+      'myPageView': (context) => RouteGuard(child: MyPage()),
       'cameraView': (context) => CameraPage(),
       'allLostItemsView': (context) => AllLostThings(),
       'requestView': (context) => RequestPage(),
