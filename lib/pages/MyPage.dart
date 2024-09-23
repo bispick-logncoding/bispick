@@ -175,30 +175,9 @@ class _MyPageState extends State<MyPage> {
                       padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
                   Container(
                     height: MediaQuery.of(context).size.height / 2 + 140,
-                    child: StreamBuilder<QuerySnapshot>(
+                    child: lostthingstream != null ? StreamBuilder<QuerySnapshot>(
                         stream: lostthingstream as Stream<QuerySnapshot>,
                         builder: (context, snapshot) {
-
-                          var filteredData = snapshot.data!.docs.where((document) {
-                            var data = document.data() as Map<String, dynamic>;
-                            if (LocalStorageService.loadUser()?.email == "bispick.maintainer@gmail.com") {
-                              return true;
-                            } else {
-                              return data['username'] == LocalStorageService.loadUser()?.displayName;
-                            }
-
-                          }).toList();
-
-                          if (filteredData.isEmpty) {
-                            return Center(
-                              child: Text(
-                                'There are no lost items yet.',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            );
-                          }
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return Center(
@@ -212,6 +191,26 @@ class _MyPageState extends State<MyPage> {
                               child: Text('ERROR HAS HAPPENED'),
                             );
                           }
+                          var filteredData = snapshot.data!.docs.where((document) {
+                            var data = document.data() as Map<String, dynamic>;
+                            if (LocalStorageService.loadUser()?.email == "bispick.maintainer@gmail.com") {
+                              return true;
+                            } else {
+                              return data['username'] == LocalStorageService.loadUser()?.displayName;
+                            }
+                          }).toList();
+
+                          if (filteredData.isEmpty) {
+                            return Center(
+                              child: Text(
+                                'There are no lost items yet.',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            );
+                          }
+
                           return ListView.builder(
                               padding: EdgeInsets.all(8),
                               itemCount: (filteredData.length < 5 &&
@@ -245,35 +244,27 @@ class _MyPageState extends State<MyPage> {
                                                   child: ListTile(
                                                     isThreeLine: true,
                                                     contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                                                    leading: Expanded(
-                                                      child: Container(
+                                                    leading: Container(
                                                         width: 100,
                                                         child: Image.network(
                                                           photoUrl,
                                                           fit: BoxFit.fitWidth,
                                                         ),
-                                                      ),
                                                     ),
-                                                    title: Expanded(
-                                                      child: Text(
+                                                    title: Text(
                                                         "${description}",
                                                         softWrap: true,
-                                                        overflow: TextOverflow.ellipsis,
                                                         style: TextStyle(
                                                             fontFamily: "Quicksand",
                                                             fontWeight: FontWeight.bold),
-                                                      ),
                                                     ),
-                                                    subtitle: Flexible(
-                                                        child: Text(
+                                                    subtitle:  Text(
                                                           "Location: ${box_num}",
                                                           softWrap: true,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          maxLines: 2,
                                                           style: TextStyle(
                                                               fontFamily: "Quicksand",
                                                               fontWeight: FontWeight.bold),
-                                                        )),
+                                                        ),
                                                     onTap: () {
                                                       Navigator.push(
                                                           context,
@@ -304,7 +295,10 @@ class _MyPageState extends State<MyPage> {
                                       ),
                                 );
                               });
-                        }),
+                        }): Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.orange,
+                      ),),
                   ),
                 ],
               ),

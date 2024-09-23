@@ -270,10 +270,22 @@ class _MainPageState extends State<MainPage> {
                       padding: EdgeInsets.only(left: 10, bottom: 10, top: 10)),
                   Container(
                     height: MediaQuery.of(context).size.height / 2 + 30,
-                    child: StreamBuilder<QuerySnapshot>(
+                    child: lostthingstream != null ? StreamBuilder<QuerySnapshot>(
                         stream: lostthingstream as Stream<QuerySnapshot>,
                         builder: (context, snapshot) {
-
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.orange,
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            print(snapshot.connectionState);
+                            return Center(
+                              child: Text('ERROR HAS HAPPENED'),
+                            );
+                          }
                           var filteredData = snapshot.data!.docs.where((document) {
                             var data = document.data() as Map<String, dynamic>;
                             return data['foundStatus'] == "Approved";
@@ -289,19 +301,7 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                           }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.orange,
-                              ),
-                            );
-                          } else if (snapshot.hasError) {
-                            print(snapshot.connectionState);
-                            return Center(
-                              child: Text('ERROR HAS HAPPENED'),
-                            );
-                          }
+
                           return ListView.builder(
                               padding: EdgeInsets.all(8),
                               itemCount: (filteredData.length < 5 &&
@@ -363,7 +363,10 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                 );
                               });
-                        }),
+                        }) : Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.orange,
+                        ),),
                   ),
                 ],
               ),

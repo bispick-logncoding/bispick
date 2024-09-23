@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     margin: EdgeInsets.only(top: 20),
                     child:  Text(
-                        "© 2024 Bispick. All rights reserved.",
+                        "© 2024 BIS | Lost and Found. All rights reserved.",
                         style: TextStyle(
                             color: Colors.black,
                             fontFamily: "Poppins",

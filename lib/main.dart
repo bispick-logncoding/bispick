@@ -27,18 +27,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Bispick', initialRoute: 'loginView', routes: {
+    return MaterialApp(title: 'BIS | Lost and Found', initialRoute: 'loginView', routes: {
       'loginView': (context) => LoginPage(),
       'registerView': (context) => RegisterPage(),
       'homeView': (context) => RouteGuard(child: MainPage()),
       'myPageView': (context) => RouteGuard(child: MyPage()),
-      'cameraView': (context) => CameraPage(),
-      'allLostItemsView': (context) => AllLostThings(),
-      'requestView': (context) => RequestPage(),
-      'othersView': (context) => Others(),
-      'stationaryView': (context) => Stationery(),
-      'edeviceView': (context) => Edevice(),
-      'clothingView': (context) => Clothing(),
+      'cameraView': (context) => RouteGuard(child: CameraPage()),
+      'allLostItemsView': (context) => RouteGuard(child: AllLostThings()),
+      'requestView': (context) => RouteGuard(child: RequestPage()),
+      'othersView': (context) => RouteGuard(child: Others()),
+      'stationaryView': (context) => RouteGuard(child: Stationery()),
+      'edeviceView': (context) => RouteGuard(child: Edevice()),
+      'clothingView': (context) => RouteGuard(child: Clothing()),
     });
   }
 }
