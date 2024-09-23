@@ -228,9 +228,8 @@ class _MyPageState extends State<MyPage> {
                                 final lostthingid = lostThing.id;
                                 return Container(
                                   constraints: BoxConstraints(
+                                    maxHeight: 115
                                   ),
-                                  child:
-                                    IntrinsicHeight(
                                       child: Row(
                                           children: [
                                             Expanded(
@@ -303,7 +302,6 @@ class _MyPageState extends State<MyPage> {
                                             )
                                           ]
                                       ),
-                                    ),
                                 );
                               });
                         }),
