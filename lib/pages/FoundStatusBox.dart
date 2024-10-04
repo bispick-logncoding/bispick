@@ -55,13 +55,20 @@ class _FoundStatusBoxState extends State<FoundStatusBox> {
             items: FoundStatus.values.map((FoundStatus status) {
               return DropdownMenuItem<FoundStatus>(
                 value: status,
-                child: Text(
-                  status.value,
-                  style: TextStyle(
-                    color: Colors.black,
-                    letterSpacing: -1,
-                    fontSize: 12
-                  ),
+                child: Row(
+                  children: [
+                    SizedBox(width: 8),
+                    Text(
+                      status.value,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Quicksand",
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -.5,
+                          fontSize: 11
+                      ),
+                    ),
+                  ],
                 ),
               );
             }).toList(),

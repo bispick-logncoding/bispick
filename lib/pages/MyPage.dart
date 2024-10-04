@@ -288,7 +288,7 @@ class _MyPageState extends State<MyPage> {
                                                 child: FoundStatusBox(
                                                   id: filteredData[index].id,
                                                   status:  FoundStatus.values.firstWhere((e) => e.value == lostThing.get('foundStatus')),
-                                                  isEditable: LocalStorageService.loadUser()?.email == "bispick.maintainer@gmail.com",
+                                                  isEditable: LocalStorageService.loadUser()?.email == "kodw4284@gmail.com",
                                                 )
                                             )
                                           ]
