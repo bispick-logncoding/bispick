@@ -1,3 +1,4 @@
+import 'package:bispick/enums/found_status.dart';
 import 'package:bispick/lostitemCRUD/CRUD.dart';
 import 'package:bispick/pages/home.dart';
 import 'package:bispick/pages/itemsdetail.dart';
@@ -74,14 +75,19 @@ class _AllLostThingsState extends State<AllLostThings> {
               child: CircularProgressIndicator(color: Colors.black),
             );
           } else if (snapshot.hasError) {
+
             return Center(
               child: Text("ERROR HAS HAPPENED"),
             );
           } else if (snapshot.hasData) {
+            var filteredData = snapshot.data!.docs.where((document) {
+              var data = document.data() as Map<String, dynamic>;
+              return data['foundStatus'] == FoundStatus.Approved.value;
+            }).toList();
             return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+                itemCount: filteredData.length,
                 itemBuilder: (context, index) {
-                  final lostThing = snapshot.data!.docs[index];
+                  final lostThing = filteredData[index];
                   final photoURL = lostThing.get('photourl');
                   final description = lostThing.get("description");
                   final box_num = lostThing.get("box_number");
@@ -96,7 +102,7 @@ class _AllLostThingsState extends State<AllLostThings> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         LostThingDetailView(
-                                          username: snapshot.data!.docs[index]
+                                          username: filteredData[index]
                                               .get('username'),
                                           box_number: box_num,
                                           photourl: photoURL,

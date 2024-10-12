@@ -221,6 +221,8 @@ class _PostPageState extends State<PostPage> {
                         ),
                       ),
                       child: TextFormField(
+                        maxLines: null, // Allow text to wrap
+                        keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             labelText: 'Description',

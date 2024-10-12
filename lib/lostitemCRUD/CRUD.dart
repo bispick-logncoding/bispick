@@ -101,7 +101,6 @@ class CRUD {
   Future<dynamic> getAllApprovedLostThings() async {
     return await FirebaseFirestore.instance
         .collection('Lostthings')
-        .where('foundStatus', isEqualTo: 'Approved')
         .orderBy('time', descending: true)
         .snapshots();
   }
