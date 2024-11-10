@@ -79,6 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                           // }
                           var token = await plugin.getTokens(email: googleSignInUserData!.email);
 
+                          bool isAllowed = _isAllowedEmail(googleSignInUserData!.email);
+                          if (!isAllowed) {
+                            _showDialog();
+                            return;
+                          }
+
                           User user = User(
                             id: googleSignInUserData!.id,
                             email: googleSignInUserData!.email,
@@ -118,5 +124,45 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ));
+  }
+
+  bool _isAllowedEmail(String email) {
+    final RegExp domainRegExp = RegExp(r'^[a-zA-Z0-9._%+-]+@bisce\.net$');
+    const List<String> allowedEmails = [
+      'bispick.logncoding@gmail.com',
+      'bispick.maintainer@gmail.com',
+      'kodw4284@gmail.com'
+    ];
+
+    if (domainRegExp.hasMatch(email)) {
+      return true;
+    }
+
+    if (allowedEmails.contains(email)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Alert'),
+          content: const Text('External email sign-ins are not allowed.\nPlease use your BIS email.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Confirm'),
+              onPressed: () {
+                // 확인 버튼 클릭 시 수행할 작업
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
