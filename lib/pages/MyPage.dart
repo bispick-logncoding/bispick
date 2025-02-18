@@ -203,7 +203,7 @@ class _MyPageState extends State<MyPage> {
                           if (filteredData.isEmpty) {
                             return Center(
                               child: Text(
-                                'There are no lost items yet.',
+                                'There are no lost items',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),
