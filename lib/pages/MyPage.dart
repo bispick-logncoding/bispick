@@ -105,7 +105,7 @@ class _MyPageState extends State<MyPage> {
                                         .pushNamed('allLostItemsView');
                                   },
                                   child: Text(
-                                    "Lost",
+                                    "Found",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Quicksand",
@@ -125,7 +125,7 @@ class _MyPageState extends State<MyPage> {
                                         .pushNamed('cameraView');
                                   },
                                   child: Text(
-                                    "Found",
+                                    "Upload",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Quicksand",

@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
                                         .pushNamed('allLostItemsView');
                                   },
                                   child: Text(
-                                    "Lost",
+                                    "Found",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Quicksand",
@@ -114,7 +114,7 @@ class _MainPageState extends State<MainPage> {
                                         .pushNamed('cameraView');
                                   },
                                   child: Text(
-                                    "Found",
+                                    "Upload",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Quicksand",
